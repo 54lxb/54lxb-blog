@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lxb.blog.mapper.ArticleMapper">
+    <resultMap id="BaseResultMap" type="cn.lxb.blog.model.Article">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="category_id" property="categoryId" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="tags" property="tags" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="INTEGER"/>
+        <result column="show_count" property="showCount" jdbcType="INTEGER"/>
+        <result column="comments_num" property="commentsNum" jdbcType="INTEGER"/>
+        <result column="blog_type" property="blogType" jdbcType="INTEGER"/>
+        <result column="allow_comment" property="allowComment" jdbcType="TINYINT"/>
+        <result column="allow_ping" property="allowPing" jdbcType="TINYINT"/>
+        <result column="allow_feed" property="allowFeed" jdbcType="TINYINT"/>
+        <result column="author_id" property="authorId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="cn.lxb.blog.model.Article" extends="BaseResultMap">
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,72 @@
+server:
+  port: 8080
+
+spring:
+  aop:
+     auto: true
+     proxy-target-class: true
+
+  servlet:
+    multipart:
+      max-file-size: 10Mb
+      max-request-size: 100Mb
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/blog_54lxb?useSSL=false&useUnicode=true&autoReconnect=true&characterEncoding=UTF-8&useServerPstmts=true&zeroDateTimeBehavior=round
+    username: 54lxb
+    password: 54-lxb@123.
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    tomcat:
+      min-idle: 10
+      max-idle: 100
+      max-wait: 10000
+      initial-size: 10
+      test-on-borrow: false
+      test-while-idle: true
+      validation-query: SELECT 1
+      time-between-eviction-runs-millis: 3600
+      jdbc-interceptors: ConnectionState;SlowQueryReport(threshold:0)
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    check-template-location: true
+    suffix: .html
+    encoding: UTF-8
+    mode: LEGACYHTML5
+    cache: false
+
+  #如果不想使用重启功能，可以使用spring.devtools.restart.enabled属性来禁用它
+  devtools:
+      restart:
+        enabled: true
+        #配置监视其他路径的更改
+        additional-paths: src/main/java
+        # 仅排除/static你将设置以下内容：某些资源（如静态资产和视图模板） 不需要重新启动应用程序
+        exclude: static/**,template/**
+      #与LiveReload一起使用时，自动重启的效果非常好。
+      livereload:
+        enabled: true
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: cn.lxb.blog.model
+  config-location: classpath:mybatis-conf.xml
+
+mapper:
+  mappers: cn.lxb.blog.config.BaseMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  supportMethodsArguments: true
+  reasonable: true
+  params: count=countSql
+
+logging:
+  file: ./logs/54lxb-blog-logging.log
+  level:
+    root: info
+    cn.lxb.blog.mapper: debug
