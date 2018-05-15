@@ -30,12 +30,8 @@ spring:
       jdbc-interceptors: ConnectionState;SlowQueryReport(threshold:0)
 
   thymeleaf:
-    prefix: classpath:/templates/
-    check-template-location: true
-    suffix: .html
-    encoding: UTF-8
-    mode: LEGACYHTML5
     cache: false
+    encoding: UTF-8
 
   #如果不想使用重启功能，可以使用spring.devtools.restart.enabled属性来禁用它
   devtools:
@@ -69,4 +65,3 @@ logging:
   file: ./logs/54lxb-blog-logging.log
   level:
     root: info
-    cn.lxb.blog.mapper: debug

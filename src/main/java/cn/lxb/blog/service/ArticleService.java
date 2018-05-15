@@ -25,4 +25,14 @@ public interface ArticleService {
      */
     PageInfo<Article> queryByCondition(ArticleExample example, Integer currentPageNum);
 
+    /**
+     * <p>
+     *     Description：根据文章ID查询文章详情
+     * </p>
+     *
+     * @param articleId 文章Id
+     * @return Article OR NULL
+     */
+    Article findArticleById(Integer articleId);
+
 }

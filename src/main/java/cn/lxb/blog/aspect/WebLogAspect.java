@@ -32,25 +32,20 @@ public class WebLogAspect {
     private ThreadLocal<Long> startTime = new ThreadLocal<>();
 
     @Pointcut("execution(public * cn.lxb.blog.web..*.*(..))")
-    public void webLog() {
-    }
-
+    public void webLog() { }
 
     @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) {
-
         startTime.set(System.currentTimeMillis());
-
         //接收到请求，记录请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         // 记录下请求内容
-        logger.info("》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》URL : {}", request.getRequestURL());
-        logger.info("》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》SESSION : {}", request.getSession());
-        logger.info("》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》HTTP_METHOD : {}", request.getMethod());
-        logger.info("》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》IP_ADDRESS : {}", request.getRemoteAddr());
-        logger.info("》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》CLASS_METHOD : {}{}{}", joinPoint.getSignature().getDeclaringTypeName(), ".", joinPoint.getSignature().getName());
-        logger.info("》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》PARAMETERS : {}", Arrays.toString(joinPoint.getArgs()));
+        logger.info("》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》URL : {}", request.getRequestURL());
+        logger.info("》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》HTTP_METHOD : {}", request.getMethod());
+        logger.info("》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》IP_ADDRESS : {}", request.getRemoteAddr());
+        logger.info("》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》CLASS_METHOD : {}{}{}", joinPoint.getSignature().getDeclaringTypeName(), ".", joinPoint.getSignature().getName());
+        logger.info("》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》PARAMETERS : {}", Arrays.toString(joinPoint.getArgs()));
     }
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")

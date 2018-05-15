@@ -34,4 +34,8 @@ public class ArticleServiceImpl implements ArticleService {
         return new PageInfo<>(articleList);
     }
 
+    @Override
+    public Article findArticleById(Integer articleId) {
+        return articleMapper.selectByPrimaryKey(articleId);
+    }
 }
