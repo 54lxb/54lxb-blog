@@ -2,9 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="zh">
 <head>
     <meta charset="utf-8">
-    <title>54LXB | 博客</title>
+    <title>[[${article.title}]]</title>
     <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon">
     <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon"/>
+    <meta name="description" th:content="${article.description}">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta name="description" content="本站是54LXB基于hexo博客主题+spring-boot作为后端开发而成.
     内容涵盖Java基础、JAVA的web框架、等其他技术的分享。也会包含一些个人在生活中的笔记或者有意思的事情."/>
@@ -12,8 +13,7 @@
     <meta property="og:title" content="54LXB | 博客"/>
     <meta property="og:url" content="http://www.54lxb.cn"/>
     <meta property="og:site_name" content="54LXB | 博客">
-    <meta property="og:description" content="本站是54LXB基于hexo博客主题+spring-boot作为后端开发而成。
-    内容涵盖Java基础、JAVA的web框架、等其他技术的分享。"/>
+    <meta property="og:description" th:content="${article.description}">
     <meta name="keywords" content="Spring Boot, Spring,Linux,Java,Hadoop"/>
     <link rel="stylesheet" type="text/css" th:href="@{/fore/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/fore/css/editormd.preview.css}"/>
@@ -21,6 +21,26 @@
     <link rel="stylesheet" type="text/css" th:href="@{/fore/css/pagination.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/fore/css/lightgallery.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/fore/css/font-awesome.css}">
+    <style type="text/css">
+        @media screen and (min-width: 1200px) {
+            #main {
+                display: inline;
+                float: left;
+                width: 74.9999999999%;
+                margin: 0 0.769230769230769%;
+            }
+        }
+
+        @media screen and (min-width: 1199px) and (max-width: 1199px) {
+            #main {
+                display: inline;
+                float: left;
+                width: 74.9999999999%;
+                margin: 0 0.769230769230769%;
+            }
+        }
+
+    </style>
 </head>
 <body>
 <div id="container">
@@ -66,7 +86,7 @@
                                         <div class="ins-selectable ins-search-item" data-url="/article/details/1">
                                             <header>
                                                 <i class="fa fa-file"></i>
-                                               知识改变命运，技术改变世界！
+                                                知识改变命运，技术改变世界！
                                             </header>
                                             <p class="ins-search-preview">好好学习，努力工作一切皆可盼！</p>
                                         </div>
@@ -170,109 +190,55 @@
                 <div class="loader-section section-right"></div>
                 <div class="load_title">正在加载54lxb站点....<br><span>V1.0</span></div>
             </div>
-            <div id="main-article">
-                <article th:id="'/article/details/'+ ${article.id}" th:each="article : ${articlePageInfo.list}" class="article article-type-post" itemscope itemprop="blogPost">
-                    <div class="article-inner">
-                        <header class="article-header">
-                            <h1 itemprop="name">
-                                <a class="article-title" th:href="'/article/details/'+ ${article.id}" th:text="${article.title}"></a>
-                            </h1>
-                            <div class="article-meta">
-                                <div class="article-date">
-                                    <i class="fa fa-calendar"></i>
-                                    <a th:href="'/article/details/1'">
-                                        <time th:utext="${#dates.format(article.createTime, 'yyyy-MM-dd')}" itemprop="datePublished">2017-04-03</time>
-                                    </a>
-                                </div>
-                                <div class="article-category" style="text-transform: none;">
-                                    <i class="fa fa-folder"></i>
-                                    <a class="article-category-link" href="javascript:void(0);" data-id="1" style="cursor: pointer">开源连接池</a>
-                                </div>
-                                <div class="share-container" style="text-transform: none;">
-                                    <i class="fa fa-tag"></i>
-                                    <a class="article-tag-link" data-id="1" style="cursor: pointer" th:text="${article.tags}"></a>
-                                </div>
+            <article id="post-zuul-vs-nginx-performance" class="article article-type-post" itemscope=""
+                     itemprop="blogPost">
+                <div class="article-inner">
+                    <header class="article-header">
+                        <h1 class="article-title" itemprop="name">
+                            <span id="article-title" th:text="${article.title}"></span>
+                        </h1>
+                        <div class="article-meta">
+                            <div class="article-date">
+                                <i class="fa fa-calendar"></i>
+                                <a th:href="'/article/details/'+${article.id}" id="article-url">
+                                    <time datetime="2017-04-03" itemprop="datePublished"
+                                          th:text="${#dates.format(article.createTime,'yyyy-MM-dd')}"></time>
+                                </a>
                             </div>
-                        </header>
-                        <div class="article-entry" itemprop="articleBody" th:text="${article.description}"></div>
-                        <div class="article-more">
-                            <p class="article-more-link">
-                                <a title=" 查看更多 " class="read-more" th:href="'/article/details/'+ ${article.id}" style="cursor: pointer">查看更多</a>
-                            </p>
+                            <div class="article-category" style="text-transform: none;">
+                                <i class="fa fa-folder"></i>
+                                <a class="article-category-link" style="cursor: pointer">开源连接池</a>
+                            </div>
+                            <div class="share-container" style="text-transform: none;">
+                                <i class="fa fa-tag"></i>
+                                <a class="article-tag-link" data-id="1" style="cursor: pointer" th:text="${article.tags}"></a>
+                            </div>
                         </div>
-                        <footer class="article-footer">
-                            <div id="socialShare" class="socialShare" data-content="希望您有任何好的建议都可以反馈给我,致力于IT技能的分享和学习"
-                                 th:data-title="${article.title}" th:data-url="'/article/details/'+ ${article.id}"
-                                 th:data-desc="${article.description}"></div>
-                        </footer>
+                    </header>
+                    <div class="article-entry" itemprop="articleBody" lg-uid="lg0">
+                        <div id="article-content">
+                            <textarea id="append-test" style="display:none;" th:utext="${article.content}"></textarea>
+                        </div>
                     </div>
-                </article>
-            </div>
-            <div style="margin-top: -29px;height:50px">
-                <div style="float: left;display: none" class="pagination">共
-                    <span id="total-num"></span>
-                    条记录
-                    <span id="current-page"></span>
-                    /
-                    <span id="total-page"></span>
                 </div>
-                <div id="pagination" data-type="article" class="pagination" style="float: right"></div>
-            </div>
+
+                <nav id="article-nav">
+                    <a th:if="${lastArticle != null}" th:href="'/article/details/'+${lastArticle.id}"
+                       id="article-nav-newer" class="article-nav-link-wrap">
+                        <strong class="article-nav-caption">上一篇</strong>
+                        <div class="article-nav-title" th:text="${lastArticle.title}"></div>
+                    </a>
+
+                    <a th:if="${nextArticle != null}" th:href="'/article/details/'+${nextArticle.id}"
+                       id="article-nav-older" class="article-nav-link-wrap">
+                        <strong class="article-nav-caption">下一篇</strong>
+                        <div class="article-nav-title" th:text="${nextArticle.title}"></div>
+                    </a>
+                </nav>
+            </article>
         </section>
 
-        <aside id="sidebar">
-            <!--公告-->
-            <div class="widget-wrap">
-                <h3 class="follow">公告</h3>
-                <div class="widget">
-                    <div class="card-front animated col s12 m12 l8 offset-l2 fadeInUp bg-aphorism">
-                        <p class="bg-danger">
-                            <span>
-                                放下你的浮躁，放下你的懒惰，放下你的三分钟热度，闭上你什么都想聊两句的嘴巴，静下心来好好做你该做的事。你的努力是唯一能让你站稳脚跟的依靠。
-                                做你想做的，趁阳光正好。去追逐梦想，趁还年轻。不浪费时间，不挥霍时光，不沉迷过去，不恐惧未来。努力从来不会白费，今日播下的种子，正在你看不见、
-                                想不到的某处悄悄地发芽。你想要好的成绩，但是你不去学习；你想要富裕的生活，但是你不去拼搏奋斗；你想要健康的身体，但是你没能坚持锻炼；你想要称心如意的生活，
-                                但是你从未真正的改变过自己。世界上最难的事，莫过于在热闹之中按兵不动，在诱惑面前不忘初心，别偏激，按兵不动不是让你停滞不前，不忘初心也并非不可以放眼未来，
-                                冷静，不是迟钝，沉默，不代表妥协。
-                            </span>
-                            <span class="aphorism-author"> -- 54lxb</span>
-                            <br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!--每日一言-->
-            <div class="widget-wrap" th:fragment="aphorism">
-                <h3 class="follow">与君共勉</h3>
-                <div class="widget">
-                    <div class="card-front animated col s12 m12 l8 offset-l2 fadeInUp bg-aphorism">
-                        <p class="bg-danger">
-                            Talk is cheap. Show me the code.
-                            <br><br>
-                            译文:空谈是不值钱的。给我看你的源码就好。<br>
-                            <span class="aphorism-author"> -- Linus Torvalds</span>
-                            <br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!--文章分类-->
-            <div class="widget-wrap">
-                <h3 class="follow">文章分类</h3>
-                <div class="widget">
-                    <ul class="category-list">
-                        <li class="category-list-item" style="cursor: pointer">
-                            <a class="category-list-link" data-id="1">Java基础</a>
-                            <span class="category-list-count">20</span>
-                        </li>
-                        <li class="category-list-item" style="cursor: pointer">
-                            <a class="category-list-link" data-id="2">SpringBoot</a>
-                            <span class="category-list-count">15</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div id="toTop" class="fa fa-angle-up"></div>
-        </aside>
+        <div id="toTop" class="fa fa-angle-up"></div>
     </div>
 
     <footer id="footer">
@@ -283,14 +249,18 @@
             </div>
         </div>
     </footer>
+
+
 </div>
 <script type="text/javascript" th:src="@{/fore/js/jquery.min.js}"></script>
-<script type="text/javascript" th:src="@{/back/js/plugins/chosen/chosen.jquery.js}"></script>
 <script type="text/javascript" th:src="@{/fore/js/busuanzi.pure.mini.js}"></script>
-<script type="text/javascript" th:src="@{/fore/js/jqPaginator.min.js}"></script>
+<script type="text/javascript" th:src="@{/fore/js/article-content.js}"></script>
+<script type="text/javascript" th:src="@{/fore/lib/jquery.imgbox.pack.js}"></script>
+<script type="text/javascript" th:src="@{/back/lib/prettify.min.js}"></script>
+<script type="text/javascript" th:src="@{/back/lib/marked.min.js}"></script>
+<script type="text/javascript" th:src="@{/back/js/editormd.js}"></script>
 <script type="text/javascript" th:src="@{/fore/js/insight.js}"></script>
 <script type="text/javascript" th:src="@{/fore/js/lightgallery.min.js}"></script>
 <script type="text/javascript" th:src="@{/fore/js/main.js}"></script>
-<script type="text/javascript" th:src="@{/fore/js/index.js}"></script>
 </body>
 </html>

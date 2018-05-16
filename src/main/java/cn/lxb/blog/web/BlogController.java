@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
@@ -50,7 +51,7 @@ public class BlogController {
     /**
      *
      * <p>
-     *     Description：初始化博客首页信息
+     *     Description：查询博客文章详情，根据博文ID
      * </p>
      *
      * @param articleId 文章Id
@@ -60,10 +61,26 @@ public class BlogController {
      * @apiNote 知识改变命运，技术改变世界！
      * @since 2017-09-13 09:00.
      */
-    @GetMapping(value = "/details/{articleId}")
+    @GetMapping(value = "/article/details/{articleId}")
     public String findArticleById(@PathVariable("articleId") Integer articleId, Model model) {
         Article article = articleService.findArticleById(articleId);
         model.addAttribute("article", article);
-        return "fore/index";
+        return "fore/article";
+    }    /**
+     *
+     * <p>
+     *     Description：根据关键字查找博文
+     * </p>
+     *
+     * @param KeyWord 关键字
+     * @return  String
+     * @author Andy
+     * @apiNote 知识改变命运，技术改变世界！
+     * @since 2017-09-13 09:00.
+     */
+    @GetMapping(value = "/article/content/search")
+    @ResponseBody
+    public String searchArticleByKeyWord(@PathVariable("KeyWord") String KeyWord) {
+        return "";
     }
 }

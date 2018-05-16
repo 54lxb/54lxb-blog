@@ -22,4 +22,8 @@
         <result column="content" property="content" jdbcType="LONGVARCHAR"/>
     </resultMap>
 
+    <select id="findArticleById" resultMap="BaseResultMap">
+        SELECT * FROM article WHERE id = #{articleId}
+    </select>
+
 </mapper>
