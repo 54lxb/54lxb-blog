@@ -1297,6 +1297,16 @@ a.article-title:hover {
     float: left;
 }
 
+.article-tags {
+    float: left;
+    margin-left: 2em;
+    margin-top: 2em;
+}
+
+.article-tags a {
+    color: #565a5f;
+}
+
 .article-share-link {
     float: right;
     cursor: pointer;
