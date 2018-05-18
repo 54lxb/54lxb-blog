@@ -1,4 +1,7 @@
 (function ($) {
+
+    $('body').addClass('loaded');
+
     var toTop = ($('#sidebar').height() - $(window).height()) + 60;
     // Caption
     $('.article-entry').each(function (i) {

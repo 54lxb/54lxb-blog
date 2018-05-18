@@ -22,8 +22,30 @@
         <result column="content" property="content" jdbcType="LONGVARCHAR"/>
     </resultMap>
 
+    <sql id="baseSql">
+        id,category_id,title,tags,content,description,state,show_count,comments_num,blog_type,allow_comment,allow_ping,allow_feed,author_id,create_time,update_time
+    </sql>
+
+    <!-- 根据文章ID查询文章 -->
     <select id="findArticleById" resultMap="BaseResultMap">
-        SELECT * FROM article WHERE id = #{articleId}
+        SELECT <include refid="baseSql"/> FROM article WHERE id = #{articleId}
     </select>
+
+    <!--获取上一篇文章信息  大于当前时间且最靠近当前时间的第一篇 -->
+    <select id="getLastArticle" resultMap="BaseResultMap">
+        SELECT id,title FROM article WHERE create_time &gt;
+        (SELECT create_time FROM article WHERE id = #{articleId}) ORDER BY create_time ASC LIMIT 1
+    </select>
+
+    <!--获取下一篇文章信息 小于当前时间且最靠近当前时间的第一篇-->
+    <select id="getNextArticle" resultMap="BaseResultMap">
+        SELECT id,title FROM article WHERE create_time &lt;
+        (SELECT create_time FROM article WHERE id = #{articleId}) ORDER BY create_time DESC LIMIT 1
+    </select>
+
+    <!--增加文章的阅读量-->
+    <update id="addArticleCount">
+        UPDATE article SET show_count = show_count + 1 WHERE id = #{articleId}
+    </update>
 
 </mapper>

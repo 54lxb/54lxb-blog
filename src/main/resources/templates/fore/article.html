@@ -55,7 +55,7 @@
                     <a class="main-nav-link" href="/">主页</a>
                     <a class="main-nav-link" href="/">相册</a>
                     <a class="main-nav-link" href="/">留言</a>
-                    <a class="main-nav-link" href="/">关于博主</a>
+                    <a class="main-nav-link" th:href="@{/blogger/aboutMe}">关于博主</a>
                 </nav>
 
                 <nav id="sub-nav">
@@ -80,36 +80,25 @@
                                 <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
                             </div>
                             <div class="ins-section-wrapper">
-                                <div class="ins-section-container">
-                                    <section class="ins-section">
-                                        <header class="ins-section-header">文章</header>
-                                        <div class="ins-selectable ins-search-item" data-url="/article/details/1">
-                                            <header>
-                                                <i class="fa fa-file"></i>
-                                                知识改变命运，技术改变世界！
-                                            </header>
-                                            <p class="ins-search-preview">好好学习，努力工作一切皆可盼！</p>
-                                        </div>
-                                    </section>
-                                </div>
+                                <div class="ins-section-container"></div>
                             </div>
-                            <script type="text/javascript">
-                                (function (window) {
-                                    window.INSIGHT_CONFIG = {
-                                        TRANSLATION: {
-                                            POSTS: '文章',
-                                            PAGES: '页面',
-                                            CATEGORIES: '分类',
-                                            TAGS: '标签',
-                                            UNTITLED: '(未命名)'
-                                        },
-                                        ROOT_URL: '/',
-                                        CONTENT_URL: '/article/content/search'
-                                    };
-                                })(window);
-                            </script>
                         </div>
                     </div>
+                    <script type="text/javascript">
+                        (function (window) {
+                            window.INSIGHT_CONFIG = {
+                                TRANSLATION: {
+                                    POSTS: '文章',
+                                    PAGES: '页面',
+                                    CATEGORIES: '分类',
+                                    TAGS: '标签',
+                                    UNTITLED: '(未命名)'
+                                },
+                                ROOT_URL: '/',
+                                CONTENT_URL: '/article/search'
+                            };
+                        })(window);
+                    </script>
                 </div>
             </div>
         </div>
@@ -236,17 +225,28 @@
                 </div>
 
                 <nav id="article-nav">
+                    <a th:if="${lastArticle == null}" href="javascript:void(0)"
+                       id="no-article-nav-newer" class="article-nav-link-wrap">
+                        <strong class="article-nav-caption">上一篇</strong>
+                        <div class="article-nav-title">没有了</div>
+                    </a>
                     <a th:if="${lastArticle != null}" th:href="'/article/details/'+${lastArticle.id}"
                        id="article-nav-newer" class="article-nav-link-wrap">
                         <strong class="article-nav-caption">上一篇</strong>
                         <div class="article-nav-title" th:text="${lastArticle.title}"></div>
                     </a>
 
+                    <a th:if="${nextArticle == null}" href="javascript:void(0)"
+                       id="no-article-nav-older" class="article-nav-link-wrap">
+                        <strong class="article-nav-caption">下一篇</strong>
+                        <div class="article-nav-title">没有了</div>
+                    </a>
                     <a th:if="${nextArticle != null}" th:href="'/article/details/'+${nextArticle.id}"
                        id="article-nav-older" class="article-nav-link-wrap">
                         <strong class="article-nav-caption">下一篇</strong>
                         <div class="article-nav-title" th:text="${nextArticle.title}"></div>
                     </a>
+
                 </nav>
             </article>
         </section>
@@ -263,10 +263,8 @@
         </div>
     </footer>
 
-
 </div>
 <script type="text/javascript" th:src="@{/fore/js/jquery.min.js}"></script>
-<script type="text/javascript" th:src="@{/fore/js/busuanzi.pure.mini.js}"></script>
 <script type="text/javascript" th:src="@{/fore/js/article-content.js}"></script>
 <script type="text/javascript" th:src="@{/fore/lib/jquery.imgbox.pack.js}"></script>
 <script type="text/javascript" th:src="@{/back/lib/prettify.min.js}"></script>
@@ -275,5 +273,6 @@
 <script type="text/javascript" th:src="@{/fore/js/insight.js}"></script>
 <script type="text/javascript" th:src="@{/fore/js/lightgallery.min.js}"></script>
 <script type="text/javascript" th:src="@{/fore/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/fore/js/love.js}"></script>
 </body>
 </html>

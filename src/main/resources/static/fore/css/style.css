@@ -1373,7 +1373,7 @@ a.article-title:hover {
 }
 
 @media screen and (min-width: 1200px) {
-    #article-nav-newer {
+    #article-nav-newer,#no-article-nav-newer {
         float: left;
         text-align: right;
         padding-right: 20px;
@@ -1381,7 +1381,7 @@ a.article-title:hover {
 }
 
 @media screen and (min-width: 1200px) {
-    #article-nav-older {
+    #article-nav-older,#no-article-nav-older {
         float: right;
         text-align: left;
         padding-left: 20px;
@@ -1396,7 +1396,7 @@ a.article-title:hover {
     text-transform: uppercase;
 }
 
-#article-nav-newer .article-nav-caption {
+#article-nav-newer,#no-article-nav-newer .article-nav-caption {
     margin-right: -2px;
 }
 

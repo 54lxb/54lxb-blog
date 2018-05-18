@@ -1,0 +1,278 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>54LXB | 博客</title>
+    <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="description" content="本站是54LXB基于hexo博客主题+spring-boot作为后端开发而成.
+    内容涵盖Java基础、JAVA的web框架、等其他技术的分享。也会包含一些个人在生活中的笔记或者有意思的事情."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="54LXB | 博客"/>
+    <meta property="og:url" content="http://www.54lxb.cn"/>
+    <meta property="og:site_name" content="54LXB | 博客">
+    <meta property="og:description" content="本站是54LXB基于hexo博客主题+spring-boot作为后端开发而成。
+    内容涵盖Java基础、JAVA的web框架、等其他技术的分享。"/>
+    <meta name="keywords" content="Spring Boot, Spring,Linux,Java,Hadoop"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/fore/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/fore/css/about.me.css}">
+    <style type="text/css">
+        a {
+            color: #000;
+        }
+
+        #footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 30px;
+            background-color: #fbfffc;
+        }
+
+        body {
+            height: 100%;
+        }
+
+        .main {
+            position: relative;
+
+        }
+
+    </style>
+</head>
+
+<body>
+<header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">54lxb</span>
+            </a>
+            <nav id="main-nav">
+                <a class="main-nav-link" href="/">主页</a>
+                <a class="main-nav-link" href="/">相册</a>
+                <a class="main-nav-link" href="/">留言</a>
+                <a class="main-nav-link" th:href="@{/blogger/aboutMe}">关于博主</a>
+            </nav>
+
+            <nav id="sub-nav">
+                <div class="profile" id="profile-nav">
+                    <a id="profile-anchor" href="javascript:void (0);">
+                        <img class="avatar" th:src="@{/fore/img/avatar.png}">
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                </div>
+            </nav>
+
+            <div id="search-form-wrap">
+                <form class="search-form">
+                    <input type="text" class="ins-search-input search-form-input" placeholder="搜索"/>
+                    <button type="submit" class="search-form-submit"></button>
+                </form>
+                <div class="ins-search">
+                    <div class="ins-search-mask"></div>
+                    <div class="ins-search-container">
+                        <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="想要查找什么..."/>
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                        </div>
+                        <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    (function (window) {
+                        window.INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                                POSTS: '文章',
+                                PAGES: '页面',
+                                CATEGORIES: '分类',
+                                TAGS: '标签',
+                                UNTITLED: '(未命名)'
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/article/search'
+                        };
+                    })(window);
+                </script>
+            </div>
+        </div>
+    </div>
+    <!--移动端支持-->
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tbody>
+            <tr>
+                <td><a class="main-nav-link" href="/">主页</a></td>
+                <td><a class="main-nav-link" href="/">相册</a></td>
+                <td><a class="main-nav-link" href="/">留言</a></td>
+                <td><a class="main-nav-link" href="/">关于博主</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</header>
+<div class="main">
+
+    <div class="account">
+        <div class="account-info">
+            <div class="account-top">
+                <div class="account-top-left">
+                    <img id="avatar" th:src="@{/fore/img/avatar.png}" class="my-avatar" style="margin: auto 0;"/>
+                </div>
+                <div class="account-top-right">
+                    <h2>54lxb</h2>
+                    <p>java Developer</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="account-bottom">
+                <div class="tabs">
+                    <nav>
+                        <a><span> </span>简介</a>
+                        <a><span class="icon1"></span>技能</a>
+                        <a><span class="icon2"></span>爱好</a>
+                        <a><span class="icon3"></span>联系我</a>
+                        <a><span class="icon4"></span>其他</a>
+                    </nav>
+                    <div class="content">
+                        <div class="text">
+                            <div class="text-right">
+                                <h4>Introduction</h4>
+                                <div class="clear"></div>
+                                <p>作者90后,毕业于吉首大学计算机科学与技术专业,目前个人从事java相关的工作,主要研究和工作的方向在java和linux,
+                                    平时会学习一些新的技术或者框架,有时候会阅读一些java的经典书籍,以提高自己对于技术的理解.
+                                </p>
+                                <p>
+                                    大学期间弄过一些乱七八糟的东西,非常遗憾的事情是没有去完成一个优质的作品,在今后的工作和生活中,可能会尝试更多的东西.大学期间android,hadoop,linux,java等都略微学过一点点,目前主要规划是在java基础和java的一些框架学习中.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="text">
+                            <div class="text-right">
+                                <h4>Skills</h4>
+                                <section class="container">
+                                    <div class="progress">
+                                        <span style="width: 40%;"><span>html</span></span>
+                                    </div>
+
+                                    <div class="progress">
+                                        <span class="green" style="width: 50%;"><span>js</span></span>
+                                    </div>
+
+                                    <div class="progress">
+                                        <span class="orange" style="width: 50%;"><span>hadoop</span></span>
+                                    </div>
+
+                                    <div class="progress">
+                                        <span class="red" style="width: 60%;"><span>linux</span></span>
+                                    </div>
+
+                                    <div class="progress">
+                                        <span class="blue" style="width: 70%;"><span>java</span></span>
+                                    </div>
+                                    <div class="progress">
+                                        <span style="width: 15%;"><span>python</span></span>
+                                    </div>
+                                    <div class="progress">
+                                        <span style="width: 0%;"><span>go</span></span>
+                                    </div>
+                                </section>
+                                <div class="text_wrap" hidden>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="text">
+
+                            <div class="text-right">
+                                <h4>Hobby</h4>
+                                <div class="Hobby"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="text ">
+                            <div class="text-right">
+                                <h4>Connection</h4>
+                                <div class="myinfo">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>手机 | 181****6715</td>
+                                        </tr>
+                                        <tr>
+                                            <td>邮箱 | 1025502782@gmail.com</td>
+                                        </tr>
+                                        <tr>
+                                            <td>telegram | 54lxb</td>
+                                        </tr>
+                                        <tr>
+                                            <td>GitHub | <a href="https://github.com/54lxb">54lxb</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>OSC | <a href="https://git.oschina.net/54lxb">54lxb</a></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="text ">
+                            <div class="text-right">
+                                <h4>Other Talk</h4>
+                                <p>作者于2018年6月20日毕业了！！！！</p>
+                                <p>祝所以计科班同学前程似锦，工作顺利，学业有成，爱情美满，身体健康！！！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            <div style="clear: left;"></div>
+            &copy; 2018 - 2020 54lxb 版权所有<br>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" th:src="@{/fore/js/jquery.min.js}"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".search-form").attr("hidden", true);
+        $("#search-form-wrap").attr("hidden", true);
+        $('.tabs nav a').on('click', function () {
+            show_content($(this).index());
+        });
+        show_content(0);
+        function show_content(index) {
+            // Make the content visible
+            $('.tabs .content.visible').removeClass('visible');
+            $('.tabs .content:nth-of-type(' + (index + 1) + ')').addClass('visible');
+
+            // Set the tab to selected
+            $('.tabs nav a.selected').removeClass('selected');
+            $('.tabs nav a:nth-of-type(' + (index + 1) + ')').addClass('selected');
+        }
+    });
+    addEventListener("load", function () {
+        setTimeout(hideURLBar, 0);
+    }, false);
+
+    function hideURLBar() {
+        window.scrollTo(0, 1);
+    }
+</script>
+</body>
+</html>

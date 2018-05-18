@@ -2,6 +2,7 @@ package cn.lxb.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
@@ -14,6 +15,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  * @since 2017-09-13 09:00.
  */
 @SpringBootApplication
+@ServletComponentScan
 @MapperScan("cn.lxb.blog.mapper")
 public class BlogApplication {
 

@@ -28,7 +28,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public PageInfo<Article> queryByCondition(ArticleExample example, Integer currentPageNum) {
-        currentPageNum = null == currentPageNum ? 1 :currentPageNum;
+        currentPageNum = null == currentPageNum ? 1 : currentPageNum;
         PageHelper.startPage(currentPageNum, 10);
         List<Article> articleList = articleMapper.selectByExample(example);
         return new PageInfo<>(articleList);
@@ -36,6 +36,22 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article findArticleById(Integer articleId) {
+        articleMapper.addArticleCount(articleId);
         return articleMapper.findArticleById(articleId);
+    }
+
+    @Override
+    public List<Article> queryArticles() {
+        return articleMapper.selectAll();
+    }
+
+    @Override
+    public Article getLastArticle(Integer articleId) {
+        return articleMapper.getLastArticle(articleId);
+    }
+
+    @Override
+    public Article getNextArticle(Integer articleId) {
+        return articleMapper.getNextArticle(articleId);
     }
 }
